@@ -1,0 +1,334 @@
+﻿body {
+    font-size: 1em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    background-color: #f9f9f9;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    max-width: 1200px;
+    margin-left:auto;
+    margin-right:auto;
+    z-index:1;
+}
+
+/* Custom styles
+    --------------------------------------------------------*/
+/* This is the flex container for the page */
+.productCollection {
+    display: flex;
+    display: -ms-flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    max-width:1100px;
+}
+
+/* This is a flex item of the page*/
+/* This is the flex container for the a section */
+.productContainer {
+    display: flex;
+    display: -ms-flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    max-width:510px;
+    padding: 10px;
+    border-bottom: 5px solid #669966;
+    min-height:50px;
+    width: 100%;
+}
+
+/* This is a flex item of a product*/
+.headerArea {
+    display: block;
+    margin: 3px 3px;
+    max-width: 500px;
+}
+
+.titlePicture {
+    display: inline-block;
+    margin:10px;
+}
+
+.titleText {
+    display: inline-block;
+    padding: 10px;
+    background-color: #669966;
+    color: white;
+}
+
+.prodTitle {
+    margin:0px 0px;
+    font-size: 24px !important;
+}
+
+h1 {
+    font-size: 24px !important;
+}
+
+h2 {
+    font-size: 14px !important;
+    text-shadow: 1px 1px #000000;
+}
+
+h3 {
+    color: #608260;
+}
+
+h1, h4 {
+    color: #333333;
+}
+
+.ad {
+    display: flex;
+    display: -ms-flex;
+    display: -webkit-flex;
+    max-width:500px;
+    border-bottom: 5px solid #669966;
+    padding: 10% 5%;
+}
+
+/* This is a flex item of a product*/
+/* This is the flex container for the content area under the title area*/
+.contentArea {
+    display: flex;
+    display: -ms-flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    margin: 3px 3px;
+    max-width: 500px;
+}
+
+.prodButton {
+    display: inline-block;
+    width:100px;
+    height: 40px;
+    margin:10px;
+    background: -webkit-linear-gradient(#88BB88, #445B44);
+    background: linear-gradient(#88BB88, #445B44);
+    color: white;
+    text-align: center;
+    border-style:outset;
+    border:1px solid #223322;
+    text-shadow: 1px 1px #223322;
+    border-radius: 5px 5px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding-top: 3px;
+}
+
+
+.basicInstruction {
+    background-color: #669966;
+    color: white;
+    font-size:large;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
+div.welcome {
+    border-bottom: 0px;
+    padding: 20px;
+    min-width: 200px;
+    min-height: 200px;
+    border-bottom: 5px solid #669966;
+}
+
+.moreDetails {
+    background-color: #669966;
+    color: white;
+    font-size:small;
+}
+
+.contentArea nav {       
+    display: flex;
+    display: -ms-flex;
+    display: -webkit-flex;
+    flex: .5;
+    -webkit-flex: .5; 
+    -ms-flex: .5;
+    margin: 3px 3px;
+}
+
+.contentArea nav div {
+    flex: 1;
+    -webkit-flex: 1; 
+    -ms-flex: 1;
+    margin: 3px 3px;
+}
+
+
+.firstAd {
+    padding-top: 20px;
+}
+
+.secondAd{
+     padding-top: 80px;
+}
+
+.thirdAd {
+     padding-top: 50px;
+}
+
+#MikesAdContainer:hover {
+    border-color: mediumblue;
+    cursor: pointer;
+    color: black;
+}
+
+#MikesAdContainer:visited {
+    color: black;
+}
+
+#MikesAdContainer:link {
+    color: black;
+}
+
+#MikesAdImage {
+    float: left;
+    padding-top: 15px !important;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+#MikesAdText {
+    margin-top: 15px;
+    font-size: 0.9em !important;
+}
+
+.lastAd {
+    padding-top: 30px;
+}
+
+#imgWait {
+    width:250px;
+    position:fixed; 
+    top:40%; 
+    left:30%; 
+    padding:20px; 
+    border:1px solid black; 
+    margin:20px; 
+    z-index:2; 
+    background-color:#FFFF00; 
+    display:none;
+}
+
+/* Smart Phones */
+@media screen and (max-width: 768px) {
+
+    #imgWait {
+        left: 0%;
+    }
+
+    .productContainer {
+    }
+
+    .contentArea {
+        flex-direction: row-reverse;
+        -webkit-flex-direction: row-reverse;
+        -ms-flex-direction: row-reverse;
+    }
+
+    .contentArea ul {
+        flex: 1;
+        -webkit-flex: 1; 
+        -ms-flex: 1;
+        margin: 3px 3px;
+    }
+
+    div.DVD {
+        display: none;
+    }
+
+
+    .logoSmall {
+        display: inline-block;
+    }
+
+    logoBig {
+        display: none;
+    }
+
+    span#computerVisible {
+        display: none;
+    }
+
+    .firstAd, .secondAd, .thirdAd {
+        padding-top: 0px;
+    }
+}
+
+/* Tablet Portrait */
+@media screen and (min-width: 769px) AND (max-width: 970px) {
+
+    .productContainer {
+    }
+
+    .contentArea {
+        flex-direction: row-reverse;
+        -webkit-flex-direction: row-reverse;
+        -ms-flex-direction: row-reverse;
+    }
+
+    .contentArea ul {
+        flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+
+        margin: 3px 3px;
+    }
+
+    div.DVD {
+        display: none;
+    }
+
+    span#computerVisible {
+        display: none;
+    }
+
+    .firstAd, .secondAd, .thirdAd {
+        padding-top: 0px;
+    }
+
+}
+
+/* Tablet Landscape */
+@media screen and (min-width: 971px)  {
+
+    .productContainer {
+    }
+
+    .contentArea {
+        flex-direction: row-reverse;
+        -webkit-flex-direction: row-reverse;
+        -ms-flex-direction: row-reverse;
+    }
+
+    .contentArea ul {
+        flex: 1;
+        -webkit-flex: 1; 
+        -ms-flex: 1;
+        margin: 3px 3px;
+    }
+}
+
+
+/* Download size tables */
+ul li table tr td {
+    padding: 0px;
+    line-height:18px;
+    width:45px;
+}
+
+ul li table {
+    position: relative;
+    left: 35px;
+}

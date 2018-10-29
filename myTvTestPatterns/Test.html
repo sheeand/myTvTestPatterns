@@ -1,0 +1,202 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="Scripts/WebWorker/GetDownloadList.js"></script>
+    <style>
+        td {
+            border: 1px solid silver;
+            padding: 5px;
+        }
+        form {
+            position: fixed;
+            left:300px;
+            top: 8px;
+        }
+          div.example {
+            display: -moz-box;
+            display: -webkit-box;
+            border: 1px solid black;
+            width: 100%;                
+          }
+          div.example > p:nth-child(1) {
+            -moz-box-flex: 1;       /* Mozilla */
+            -webkit-box-flex: 1;    /* WebKit */
+            background-color:bisque;
+          }
+          div.example > p:nth-child(2) {
+            -moz-box-flex: 4;       /* Mozilla */
+            -webkit-box-flex: 4;    /* WebKit */
+            background-color:burlywood;
+          }
+          canvas {
+            border: 1px solid red;
+          }
+    </style>
+    <script src="../Scripts/WebWorker/GetDownloadList.js"></script>
+
+</head>
+<body>
+    <div>
+        <button id="btnTotals">Get Totals</button>
+        <button id="btnDownloads">Get Lastest 200 Downloads</button>
+        <p>
+            <div id="results">Ready.</div>
+        </p>
+        <table id="myTable"></table>
+    </div>
+    <script>
+
+        window.onload = function () {
+
+            var btnTotals = document.getElementById("btnTotals");
+            var btnDownloads = document.getElementById("btnDownloads");
+            msg = document.getElementById("results");
+            itemArray = [];
+
+
+            btnTotals.addEventListener("click", GetTotals, false);
+            btnDownloads.addEventListener("click", GetDownloads, false);
+        }
+
+        function GetTotals() {
+
+            var request = new XMLHttpRequest();
+            //This is definitely a POST
+            //request.open("POST", "http://localhost:63704/Default/Test", true);
+            request.open("POST", "http://www.mytvtestpatterns.com/Default/Test", true);
+            request.send();
+
+            // Event handler
+            request.onreadystatechange = function () {
+                if (request.readyState === 4) {
+                    if (request.status === 200) {
+
+                        var tableElement = document.createElement("table");
+
+
+                        var ColorBarValueCell = document.createElement("td");
+                        var TestDiscValueCell = document.createElement("td");
+                        var ColorBarNameCell = document.createElement("td");
+                        var TestDiscNameCell = document.createElement("td");
+
+                        var cellNameStyle = document.createAttribute("style", "color:red;");
+                        var cellValueStyle = document.createAttribute("style", "color:blue;");
+
+                        ColorBarValueCell.setAttribute("style", "color:red;")
+
+
+                        var json = JSON.parse(request.responseText);
+
+                        ColorBarNameCell.innerHTML = "Total number of Color Bar DVD Downloads";
+                        TestDiscNameCell.innerHTML = "Total number of Test Disc DVD Downloads";
+                        ColorBarValueCell.innerHTML = json.ColorBarDVD;
+                        TestDiscValueCell.innerHTML = json.myTvTestDisc;
+
+                        var ColorBarRow = document.createElement("tr");
+                        var TestDiscRow = document.createElement("tr");
+
+                        ColorBarRow.appendChild(ColorBarNameCell);
+                        ColorBarRow.appendChild(ColorBarValueCell);
+                        tableElement.appendChild(ColorBarRow);
+
+                        TestDiscRow.appendChild(TestDiscNameCell);
+                        TestDiscRow.appendChild(TestDiscValueCell);
+                        tableElement.appendChild(TestDiscRow);
+
+                        var divContainer = document.getElementById("results");
+                        divContainer.appendChild(tableElement);
+
+                    } else {
+                        msg.innerHTML = request.responseText;
+                    }
+                }
+            }
+        }
+
+        var handleMessage = function(message) {
+
+            try {
+                var MessageObject = message.data;
+                DisplayTable(MessageObject);
+            } catch (e) {
+                msg.innerHTML = e.message;
+            }
+        }
+
+        function DisplayTable(MessageObject) {
+
+            // Find a <table> element with id="myTable":
+            var table = document.getElementById("myTable");
+
+            for (var j = 0; j < 200; j++) {
+
+                // Create an empty <tr> element and add it to the 1st position of the table:
+                var row = table.insertRow(-1);
+
+                // Insert new cells (<td> elements):
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+
+                // Add text to the new cells:
+                cell1.innerHTML = MessageObject.itemArray[j].Timestamp;
+                cell2.innerHTML = MessageObject.itemArray[j].Client_IP;
+                cell3.innerHTML = MessageObject.itemArray[j].Event;
+                cell4.innerHTML = MessageObject.ipLocationArray[j];
+            }
+        }
+
+
+        function GetDownloads() {
+
+            // Initialize the remote webWorker object
+            var webWorker = new Worker("http://www.mytvtestpatterns.com/Scripts/WebWorker/GetDownloadList.js");
+            //var webWorker = new Worker("http://localhost:63704/Scripts/WebWorker/GetDownloadList.js");
+
+            var itemArray = [];
+
+            // Event handler
+            webWorker.onmessage = function (message) {
+                try {
+                    itemArray = message.data;
+                    DisplayTable(itemArray);
+                } catch (e) {
+                    msg.innerHTML = e.message;
+                }
+            }
+
+            // Event handler
+            webWorker.onerror = function (err) {
+                alert(err.message + err.filename + err.lineno);
+                msg.innerHTML = err.message + "<br />Filename: " + err.filename + "<br />Line Number: " + err.lineno;
+            }
+
+
+            // Event listener - responds to a received message from the web worker
+            //webWorker.addEventListener("message", handleMessage.bind(this));
+
+            // Post to the remote webWorker
+            webWorker.postMessage("");
+
+
+        }
+
+
+
+    </script>
+    <div class="example">
+        <p>IFirst Paragraph</p>
+        <p>Second paragraph</p>
+    </div>
+
+    <canvas id="drawingSurface" width="600" height="400">
+        Your browser does not support HTML5.
+    </canvas>
+
+</body>
+</html>

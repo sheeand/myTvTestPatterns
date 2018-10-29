@@ -1,0 +1,23 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+    <title></title>
+    <link href="../CSS/Site.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div class="productCollection">
+            <img alt="myTvTestPatterns logo" class="logoSmall" src="../../Images/Graphics/myTvTestPatternsLogo2.png" />
+        </div>
+        <p id="errorMessage" class="contentSection">
+            <p>The web site is experiencing a problem at this time.</p>
+            <p>We are sorry for the inconvenience.</p>
+            <p>Please try again later.</p>
+            <label id="lblErrorMessage">@ViewBag.Page @ViewBag.Line <br />@ViewBag.Message </label>
+        </p>
+        <hr style="color:Gray;" />
+    </p>
+</body>
+</html>

@@ -1,0 +1,79 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>My TV Test Disc - Download</title>
+    <link href="~/CSS/TermsAndDownload.css" type="text/css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Images/icons/favicon.ico" />
+    <script type="text/javascript" src="~/Scripts/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+    <div id="page">
+        <div id="header">
+            <div id="logo">
+                <div id="logoImage">
+                    <img id="smallLogo" height="39" width="140" src="../../Images/Graphics/PayPalLogo.gif" alt="" />
+                </div>
+                <div id="bannerAd">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Download - banner ad -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:320px;height:100px"
+                         data-ad-client="ca-pub-5222348008135421"
+                         data-ad-slot="4348850004"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <br />
+            </div>
+        </div>
+        <div id="content">
+            <br />
+            <div id="downloadInstructions" class="information" style="font-size:large; position:relative; top:50px; margin:0px 50px 0px 50px; color:#333333;">@Html.Raw(HttpUtility.HtmlDecode(ViewBag.DownloadInstructions))</div>
+
+            <br />
+            <br />
+            <div id="footer">
+                <p style="text-align: center;">
+                    &copy; @DateTime.Today.Year myTvTestPatterns.com<br />
+                    Made in USA
+                </p>
+            </div>
+        </div>
+
+
+        <div id="leftAdPanel">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Download - left panel again -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:120px;height:600px"
+                 data-ad-client="ca-pub-5222348008135421"
+                 data-ad-slot="7441917203"></ins>
+            <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <div id="rightAdPanel">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Download - Right panel -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:120px;height:600px"
+                 data-ad-client="ca-pub-5222348008135421"
+                 data-ad-slot="4913135601"></ins>
+            <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+    <script type="text/javascript">
+        setTimeout('window.location.assign("@ViewBag.DownloadUrl")', 1000);
+    </script>
+
+
+</body>
+</html>

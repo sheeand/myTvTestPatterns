@@ -1,0 +1,11 @@
+# robots.txt file
+
+# Exclude Files From All Robots:
+
+User-agent: *
+
+Disallow: /Downloads/
+
+Sitemap: http://www.mytvtestdisc.com/sitemap_google.xml
+
+# End robots.txt file
